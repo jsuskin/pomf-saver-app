@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Pomf Saver",
+  "version": "1.0",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icons8-shrug-lineal-color-16.png",
+      "32": "icons/icons8-shrug-lineal-color-32.png",
+      "96": "icons/icons8-shrug-lineal-color-96.png"
+    }
+  }
+}
