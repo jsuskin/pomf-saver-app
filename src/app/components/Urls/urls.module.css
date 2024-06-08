@@ -1,0 +1,55 @@
+.urls-list {
+  list-style: none;
+}
+
+.urls-list li,
+.urls-list li *,
+.card-left div *,
+.asset-info {
+  display: flex;
+}
+
+.urls-list li {
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  border-top: 1px solid #424242;
+  width: 100vw;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.urls-list li * {
+  margin: 0 5px;
+}
+
+.urls-list li:last-child {
+  border-bottom: 1px solid #424242;
+}
+
+.card-left,
+.card-left div * {
+  align-items: center;
+}
+
+.card-left div * {
+  margin-right: 12px;
+}
+
+.card-left:hover {
+  color: #424242;
+}
+
+.asset-thumbnail {
+  position: relative;
+  width: 30px;
+  min-height: 30px;
+}
+
+.card-right * {
+  margin-left: 12px;
+}
+
+.created-at {
+  font-size: 0.7em;
+}
