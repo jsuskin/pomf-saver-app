@@ -1,0 +1,36 @@
+.header {
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: #424242;
+  color: #eaeaea;
+}
+
+.header,
+.auth-button,
+.google-icon-container {
+  display: flex;
+}
+
+.auth-button {
+  align-items: center;
+  color: #eaeaea;
+  font-size: 1.4em;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-button * {
+  margin: 0 3px;
+}
+
+.google-icon-container {
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eaeaea5a;
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+}

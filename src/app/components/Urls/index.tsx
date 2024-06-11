@@ -6,6 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import styles from "./urls.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const Urls = () => {
   const [urls, setUrls] = useState<any[]>([]);
@@ -39,30 +40,37 @@ const Urls = () => {
         {urls.map(({ url, createdAt }, idx) => {
           return (
             <li key={idx}>
-              <div className={styles["card-left"]}>
-                <input type='checkbox' />
-                <div>
-                  <div className={styles["asset-thumbnail"]}>
-                    <Image
-                      src={url}
-                      alt={url}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      sizes='(max-width: 100px) 100vw'
-                      priority
-                    />
+              <Link
+                href={url}
+                className={styles.card}
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                <div className={styles["card-left"]}>
+                  <input id={`checkbox-${url.split('/').pop()}`} type='checkbox' checked={false} onChange={() => {
+                    'hello'
+                  }} />
+                  <div>
+                    <div className={styles["asset-thumbnail"]}>
+                      <Image
+                        src={url}
+                        alt={url}
+                        fill
+                        style={{ objectFit: "cover" }}
+                        sizes='(max-width: 100px) 100vw'
+                        priority
+                      />
+                    </div>
+                    <p>{url}</p>
                   </div>
-                  <a href={url} target='_blank' rel='noopener noreferrer'>
-                    {url}
-                  </a>
                 </div>
-              </div>
-              <div className={styles["card-right"]}>
-                <p className={styles["created-at"]}>
-                  {timestampToDate(createdAt)}
-                </p>
-                <FontAwesomeIcon icon={faEllipsis} />
-              </div>
+                <div className={styles["card-right"]}>
+                  <p className={styles["created-at"]}>
+                    {timestampToDate(createdAt)}
+                  </p>
+                  <FontAwesomeIcon icon={faEllipsis} />
+                </div>
+              </Link>
             </li>
           );
         })}

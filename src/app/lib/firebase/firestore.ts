@@ -4,7 +4,7 @@ import {
   addDoc as addDocToDB,
   getDocs as getDocsFromDB,
 } from "firebase/firestore";
-import { app } from ".";
+import app from ".";
 
 export const db = getFirestore(app);
 
