@@ -14,10 +14,16 @@ const Urls = () => {
   useEffect(() => {
     const fetchUrls = async () => {
       const querySnapshot = await getDocs(collection(db, "urls"));
-      const urlsList = querySnapshot.docs.map((doc) => ({
-        url: doc.data().url,
-        createdAt: doc.data().createdAt,
-      }));
+      const urlsList = querySnapshot.docs.map((doc, idx) => {
+        const obj = {
+          id: doc.id,
+          url: doc.data().url,
+          createdAt: doc.data().createdAt,
+        };
+
+        return obj;
+      });
+
       setUrls(urlsList);
     };
 
@@ -47,9 +53,14 @@ const Urls = () => {
                 target='_blank'
               >
                 <div className={styles["card-left"]}>
-                  <input id={`checkbox-${url.split('/').pop()}`} type='checkbox' checked={false} onChange={() => {
-                    'hello'
-                  }} />
+                  <input
+                    id={`checkbox-${url.split("/").pop()}`}
+                    type='checkbox'
+                    checked={false}
+                    onChange={() => {
+                      "hello";
+                    }}
+                  />
                   <div>
                     <div className={styles["asset-thumbnail"]}>
                       <Image

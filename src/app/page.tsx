@@ -1,6 +1,6 @@
-'use client'
+"use client";
 import { useState, useEffect } from "react";
-import Header from './components/Header'
+import Header from "./components/Header";
 import styles from "./page.module.css";
 import Urls from "./components/Urls";
 import { onAuthStateChanged, User } from "firebase/auth";
@@ -21,9 +21,13 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    console.log({ user });
+  }, [user]);
+
   return (
     <main className={styles.main}>
-      <Header {...{user}} />
+      <Header {...{ user }} />
       <Urls />
     </main>
   );
