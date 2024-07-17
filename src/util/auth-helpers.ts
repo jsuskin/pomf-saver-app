@@ -19,11 +19,13 @@ export const signIn = async () => {
 };
 
 export const signOut = () => {
+  console.log("gfeyuhbgwriyubwrgbuhiywerg")
   _signOut(auth)
     .then(() => {
       console.log("Successfully logged out.");
+      return { success: true };
     })
     .catch((error) => {
-      console.error(error);
+      throw error;
     });
 };

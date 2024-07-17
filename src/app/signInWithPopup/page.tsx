@@ -1,6 +1,8 @@
 "use client";
 import { useEffect } from "react";
-import { signIn } from "@/util/auth-helpers";
+import { signIn, signOut } from "@/util/auth-helpers";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../lib/firebase";
 
 export default function SignInWithPopup() {
   useEffect(() => {
@@ -18,12 +20,29 @@ export default function SignInWithPopup() {
         console.log("Initializing auth...");
         const result = await signIn();
         sendResponse(result);
+      } else if (data.signOut) {
+        try {
+          await signOut();
+          sendResponse({ success: true }); // Send a success response
+        } catch (error: any) {
+          sendResponse({ success: false, error: error.message }); // Send an error response
+        }
       }
     };
+
+    // Function to handle authentication state changes
+    const handleAuthStateChange = (currentUser: any) => {
+      console.log("auth state changed: ", currentUser);
+      sendResponse({ isAuthenticated: !!currentUser });
+    };
+
+    // Subscribe to authentication state changes from Firebase
+    const unsubscribe = onAuthStateChanged(auth, handleAuthStateChange);
 
     window.addEventListener("message", messageHandler);
 
     return () => {
+      unsubscribe(); // Clean up: unsubscribe from authentication state changes
       window.removeEventListener("message", messageHandler);
       console.log("Event listener removed");
     };
