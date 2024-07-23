@@ -11,20 +11,12 @@ export default function Home() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("auth state changed next entry")
-      if (currentUser) {
-        setUser(currentUser);
-      } else {
-        setUser(null);
-      }
+      console.log('page.tsx', {currentUser})
+      setUser(currentUser);
     });
 
     return () => unsubscribe();
   }, []);
-
-  useEffect(() => {
-    console.log({ user });
-  }, [user]);
 
   return (
     <main className={styles.main}>
