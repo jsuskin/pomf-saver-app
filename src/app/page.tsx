@@ -5,6 +5,7 @@ import styles from "./page.module.css";
 import Urls from "./components/Urls";
 import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "./lib/firebase";
+import AuthHandler from "./components/AuthHandler";
 
 export default function Home() {
   const [user, setUser] = useState<User | null>(null);
@@ -20,6 +21,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
+      <AuthHandler />
       <Header {...{ user }} />
       <Urls />
     </main>
