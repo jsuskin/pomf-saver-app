@@ -9,7 +9,8 @@ const nextConfig = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           {
             key: "Access-Control-Allow-Origin",
-            value: "http://localhost:3000",
+            // value: "http://localhost:3000",
+            value: "https://pomf-saver-cerhtunz6-jsuskins-projects.vercel.app/",
           },
           {
             key: "Access-Control-Allow-Methods",
