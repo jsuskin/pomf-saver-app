@@ -1,6 +1,10 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import { signOut } from "@/util/auth-helpers";
 
-export async function handler(req: any, res: any) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method === "POST") {
     const { action } = req.body;
 
@@ -13,8 +17,12 @@ export async function handler(req: any, res: any) {
       } else {
         res.status(400).json({ success: false, error: "Invalid action" });
       }
-    } catch (error: any) {
-      res.status(500).json({ success: false, error: error.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(500).json({ success: false, error: error.message });
+      } else {
+        res.status(500).json({ success: false, error: "Unknown error" });
+      }
     }
   } else {
     res.setHeader("Allow", ["POST"]);
