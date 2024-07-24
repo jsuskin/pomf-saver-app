@@ -1,4 +1,3 @@
-// app/api/auth/route.ts
 import { signOut } from "@/util/auth-helpers";
 
 export async function handler(req: any, res: any) {
