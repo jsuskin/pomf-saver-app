@@ -1,4 +1,3 @@
-// next.config.mjs
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async headers() {
@@ -10,6 +9,7 @@ const nextConfig = {
           { key: "Access-Control-Allow-Credentials", value: "true" },
           {
             key: "Access-Control-Allow-Origin",
+            // value: "http://localhost:3000",
             value: "https://pomf-saver-cerhtunz6-jsuskins-projects.vercel.app",
           },
           {
@@ -21,16 +21,10 @@ const nextConfig = {
             value:
               "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
           },
-        ],
-      },
-      {
-        // adding X-Frame-Options header
-        source: "/:path*",
-        headers: [
           {
-            key: "X-Frame-Options",
+            key: "Content-Security-Policy",
             value:
-              "ALLOW-FROM https://pomf-saver-cerhtunz6-jsuskins-projects.vercel.app",
+              "frame-ancestors 'self' https://pomf-saver-cerhtunz6-jsuskins-projects.vercel.app",
           },
         ],
       },
