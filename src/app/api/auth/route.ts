@@ -1,31 +1,30 @@
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import { signOut } from "@/util/auth-helpers";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method === "POST") {
-    const { action } = req.body;
+export async function POST(req: NextRequest) {
+  const { action } = await req.json();
 
-    try {
-      if (action === "signOut") {
-        await signOut();
-        res
-          .status(200)
-          .json({ success: true, message: "Successfully signed out" });
-      } else {
-        res.status(400).json({ success: false, error: "Invalid action" });
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        res.status(500).json({ success: false, error: error.message });
-      } else {
-        res.status(500).json({ success: false, error: "Unknown error" });
-      }
+  try {
+    if (action === "signOut") {
+      await signOut();
+      return NextResponse.json({
+        success: true,
+        message: "Successfully signed out",
+      });
+    } else {
+      return NextResponse.json(
+        { success: false, error: "Invalid action" },
+        { status: 400 }
+      );
     }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+  } catch (error: any) {
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    );
   }
+}
+
+export async function OPTIONS() {
+  return NextResponse.json({}, { status: 200, headers: { Allow: "POST" } });
 }
