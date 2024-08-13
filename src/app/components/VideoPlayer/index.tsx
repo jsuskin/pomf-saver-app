@@ -1,11 +1,10 @@
-// VideoPlayer.jsx
-
 "use client"; // Ensure this is also a client component
+import React from "react";
 
-export default function VideoPlayer({ url }) {
+export default function VideoPlayer({ src }: { src: string }) {
   return (
-    <video controls>
-      <source src={videoUrl} type='video/mp4' />
+    <video>
+      <source src={src} type='video/mp4' />
       Your browser does not support the video tag.
     </video>
   );

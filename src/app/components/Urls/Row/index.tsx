@@ -1,12 +1,19 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
 import styles from "../urls.module.css";
-import VideoComponent from "../../VideoPlayer";
 import VideoPlayer from "../../VideoPlayer";
 
 type Timestamp = { seconds: number; nanoseconds: number };
 
-export default function Row({ id, url, createdAt }: any) {
+export default function Row({
+  id,
+  url,
+  createdAt,
+}: {
+  id: string;
+  url: string;
+  createdAt: any;
+}) {
   function timestampToDate(timestamp: Timestamp) {
     const date = new Date(timestamp.seconds * 1000);
 
