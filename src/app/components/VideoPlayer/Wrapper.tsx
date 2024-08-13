@@ -1,12 +1,11 @@
-// VideoWrapper.jsx
-
 "use client"; // Ensure this is a client component
-
 import { useEffect, useState } from "react";
-import VideoPlayer from "./VideoPlayer";
+import VideoPlayer from ".";
 
-export default function VideoWrapper({ videoId }) {
-  const [videoData, setVideoData] = useState(null);
+export default function VideoWrapper({ videoId }: { videoId: string }) {
+  const [videoData, setVideoData] = useState<null | { [key: string]: any }>(
+    null
+  );
 
   useEffect(() => {
     async function fetchVideoData() {
@@ -22,7 +21,7 @@ export default function VideoWrapper({ videoId }) {
   return (
     <div>
       {videoData ? (
-        <VideoPlayer videoUrl={videoData.videoUrl} />
+        <VideoPlayer src={videoData?.videoUrl} />
       ) : (
         <p>Loading...</p>
       )}
