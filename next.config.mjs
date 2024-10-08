@@ -20,21 +20,11 @@ const nextConfig = {
             value:
               "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
           },
-          {
-            key: "Content-Security-Policy",
-            value:
-              "frame-ancestors 'self' https://pomf-saver-cerhtunz6-jsuskins-projects.vercel.app",
-          },
         ],
       },
       {
         source: "/(.*)",
         headers: [
-          {
-            key: "Content-Security-Policy",
-            value:
-              "frame-ancestors 'self' chrome-extension://neaneikbadjhfgclgdncibenikaehaia;",
-          },
           {
             key: "Cache-Control",
             value: "no-store, no-cache, must-revalidate, proxy-revalidate",

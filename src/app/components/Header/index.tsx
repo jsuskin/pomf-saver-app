@@ -1,26 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./header.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { signIn, signOut } from "@/util/auth-helpers";
+import AuthHandler from "./AuthHandler";
 
 export default function Header({ user }: any) {
-  const handleClick = async (e: any) => {
-    e.preventDefault();
-
-    user ? signOut() : await signIn();
-  };
+  useEffect(() => {
+    console.log("header -> ", { user });
+  }, [user]);
 
   return (
     <header className={styles.header}>
-      <h1>Pomf Saver</h1>
-      <button className={styles["auth-button"]} onClick={handleClick}>
-        <div className={styles["google-icon-container"]}>
-          <FontAwesomeIcon icon={faGoogle} />
-        </div>
-        <p>{user ? "Sign Out" : "Sign In"}</p>
-      </button>
+      <header className={styles.subheader}>
+        <p>
+          Navigate to{" "}
+          <a href='https://pomf2.lain.la/' style={{ fontWeight: "600" }}>
+            https://pomf2.lain.la/
+          </a>
+        </p>
+      </header>
+      <header className={styles["header-main"]}>
+        <h1>Pomf Saver</h1>
+        <AuthHandler user={user} />
+      </header>
     </header>
   );
 }
-

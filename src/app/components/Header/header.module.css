@@ -1,15 +1,78 @@
 .header {
-  justify-content: space-between;
+  flex-direction: column;
   width: 100%;
-  padding: 10px 20px;
+}
+
+.subheader {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8333em;
+  color: #ffff89;
+  background-color: #32328e;
+  padding: 4px 0;
+}
+
+.header-main {
+  justify-content: space-between;
+  padding: 10px 30px;
   background-color: #424242;
   color: #eaeaea;
 }
 
-.header,
+.header-main,
 .auth-button,
 .google-icon-container {
   display: flex;
+}
+
+.auth-handler-container {
+  position: relative;
+}
+
+.user-avatar-container,
+.header_user-profile-section li,
+.auth-button {
+  cursor: pointer;
+}
+
+.user-avatar {
+  border: 2px solid white;
+}
+
+.user-avatar-container,
+.user-avatar {
+  border-radius: 50px;
+}
+
+.header_user-profile-section {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: #fffafa;
+  width: 200px;
+  right: -10px;
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+.user-profile-header {
+  align-self: flex-end;
+}
+
+.header_user-profile-section,
+.header_user-profile-section li,
+.user-profile-header {
+  padding: 10px;
+}
+
+.header_user-profile-section li,
+.user-profile-header {
+  color: #424242;
+  border-radius: 5px;
+}
+
+.header_user-profile-section li:hover {
+  background-color: #dcdcdc;
 }
 
 .auth-button {
@@ -18,7 +81,6 @@
   font-size: 1.4em;
   background-color: transparent;
   border: none;
-  cursor: pointer;
 }
 
 .auth-button * {

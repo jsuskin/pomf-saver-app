@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# firebase admin sdk
+pomf-saver-firebase-adminsdk-52gqg-1abdbc6f9c.json
+
 # dependencies
 /node_modules
 /.pnp

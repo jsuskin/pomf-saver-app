@@ -5,6 +5,7 @@ import { auth } from "../../lib/firebase";
 export async function POST(req: Request) {
   try {
     const { url } = await req.json(); // Parse the request body
+    console.log({requestBody: await req.json()});
     const docRef: any = await addDoc({ url, createdAt: new Date() });
     return NextResponse.json({ id: docRef.id }, { status: 200 }); // Return success response
   } catch (e) {
