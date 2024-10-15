@@ -1,6 +1,7 @@
 .header {
-  flex-direction: column;
+  /* flex-direction: column; */
   width: 100%;
+  z-index: 2;
 }
 
 .subheader {
@@ -12,6 +13,10 @@
   padding: 4px 0;
 }
 
+.subheader-link {
+  font-weight: 600;
+}
+
 .header-main {
   justify-content: space-between;
   padding: 10px 30px;
@@ -20,17 +25,50 @@
 }
 
 .header-main,
+.auth-handler-container,
+.user-avatar-container,
 .auth-button,
 .google-icon-container {
   display: flex;
 }
 
+.searchbar-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+}
+
+.searchbar {
+  padding: 6px 12px;
+  padding-left: 36px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  border-radius: 50px;
+  border: none;
+  font-size: 1.3em;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+}
+
+.clear-search-text-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+
 .auth-handler-container {
+  align-items: center;
   position: relative;
 }
 
 .user-avatar-container,
-.header_user-profile-section li,
+.user-profile-menu li,
 .auth-button {
   cursor: pointer;
 }
@@ -39,40 +77,22 @@
   border: 2px solid white;
 }
 
+.user-avatar-container {
+  align-items: center;
+}
+
 .user-avatar-container,
 .user-avatar {
   border-radius: 50px;
 }
 
-.header_user-profile-section {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  background-color: #fffafa;
+.user-profile-menu {
   width: 200px;
-  right: -10px;
   margin-top: 5px;
+  top: 50px;
+  left: -150px;
+  right: -10px;
   border-radius: 10px;
-}
-
-.user-profile-header {
-  align-self: flex-end;
-}
-
-.header_user-profile-section,
-.header_user-profile-section li,
-.user-profile-header {
-  padding: 10px;
-}
-
-.header_user-profile-section li,
-.user-profile-header {
-  color: #424242;
-  border-radius: 5px;
-}
-
-.header_user-profile-section li:hover {
-  background-color: #dcdcdc;
 }
 
 .auth-button {

@@ -1,0 +1,71 @@
+.urls-list-container {
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.urls-list {
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.urls-list thead tr th:hover {
+ border-right: 1px solid #C8CACA;
+}
+
+.select-all {
+  width: 50px;
+}
+
+.row-options-header {
+  width: 36px;
+}
+
+.urls-list tbody {
+  text-align: center;
+}
+
+.urls-list tbody tr,
+.urls-list thead tr {
+  border-bottom: 1px solid rgba(180, 180, 180, 0.4);
+}
+
+.row {
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.row td,
+.urls-list thead tr th {
+  padding: 6px 0;
+}
+
+.asset {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.asset-thumbnail {
+  position: relative;
+  width: 30px;
+  min-height: 30px;
+}
+
+.asset-path-container {
+  width: 100%;
+}
+
+.more-options {
+  position: relative;
+}
+
+.menu-container {
+  width: 200px;
+  margin-top: 5px;
+  top: 30px;
+  right: 5px;
+  border-radius: 10px;
+}

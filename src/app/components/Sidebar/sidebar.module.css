@@ -1,0 +1,50 @@
+.sidebar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 200px;
+  background: linear-gradient(to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  z-index: 1;
+  /* border-right: 1px solid black; */
+  box-shadow: 2px 4px 6px rgb(199, 199, 199);
+  transition: left 1s ease;
+}
+
+.hide {
+  left: -197px;
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  padding: 105px 0 0 20px;
+}
+
+.handle-base {
+  background-color: #32328E;
+  z-index: -1;
+}
+
+.handle-base, .handle {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: -15px;
+  top: 52%;
+  border-radius: 50%;
+}
+
+.handle {
+  color: #32328E;
+  background-color: #F2F4F4;
+  cursor: pointer;
+  transform: rotateY(180deg);
+  transition: all 1s ease;
+}
+
+.hide > .handle {
+  transform: rotateY(0deg);
+}

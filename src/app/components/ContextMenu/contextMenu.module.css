@@ -1,0 +1,33 @@
+.context-menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: #fffafa;
+  z-index: 4;
+}
+
+.context-menu-header {
+  align-self: flex-end;
+}
+
+.context-menu, .context-menu li, .context-menu-header {
+  padding: 10px;
+}
+
+.context-menu li,
+.context-menu-header {
+  color: #424242;
+  border-radius: 5px;
+}
+
+.context-menu li:hover {
+  background-color: #dcdcdc;
+}
+
+.menu-option {
+  display: flex;
+}
+
+.menu-option-icon {
+  padding-right: 10px;
+}

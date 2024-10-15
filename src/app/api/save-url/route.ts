@@ -4,12 +4,14 @@ import { auth } from "../../lib/firebase";
 
 export async function POST(req: Request) {
   try {
-    const { url } = await req.json(); // Parse the request body
-    console.log({requestBody: await req.json()});
-    const docRef: any = await addDoc({ url, createdAt: new Date() });
-    return NextResponse.json({ id: docRef.id }, { status: 200 }); // Return success response
+    const { url, uid, displayName } = await req.json();
+
+    const docRef: any = await addDoc({ url, owner: {uid, displayName}, createdAt: new Date() });
+
+    return NextResponse.json({ id: docRef.id }, { status: 200 });
   } catch (e) {
-    console.error("Error saving URL:", e); // Log the error
-    return NextResponse.json({ error: "Failed to save URL" }, { status: 500 }); // Return error response
+    console.error("Error saving URL:", e);
+
+    return NextResponse.json({ error: "Failed to save URL" }, { status: 500 });
   }
 }
