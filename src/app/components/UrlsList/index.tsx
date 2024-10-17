@@ -6,7 +6,7 @@ import styles from "./urls.module.css";
 import Row from "./Row";
 import Checkbox from "../Checkbox";
 
-const Urls = ({ setShowModal }: { setShowModal: Dispatch<SetStateAction<boolean>> }) => {
+const Urls = () => {
   const [urls, setUrls] = useState<any[]>([]);
   const [selectAll, setSelectAll] = useState(false);
 
@@ -66,8 +66,7 @@ const Urls = ({ setShowModal }: { setShowModal: Dispatch<SetStateAction<boolean>
                   selected,
                   setSelected: () => {
                     setUrls((urlsList) => urlsList.map((obj) => ({ selected: true, ...obj })));
-                  },
-                  setShowModal
+                  }
                 }}
                 createdAt={createdAt}
               />

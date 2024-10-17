@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   z-index: 5;
-  background-color: rgba(104, 104, 104, 0.2);
+  background-color: var(--darkgrey-lowalpha);
 }
 
 .show {
@@ -16,9 +16,64 @@
 }
 
 .modal {
-  width: 200px;
-  height: 200px;
-  background-color: #686868;
+  position: relative;
+  padding: 40px 60px;
+  background-color: var(--lightgrey);
   border-radius: 10px;
   box-shadow: 4px 4px 6px 2px rgb(199, 199, 199);
+}
+
+.close-modal-X {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  width: 20px;
+  height: 20px;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 164px;
+}
+
+.modal-content * {
+  margin: 10px 0;
+}
+
+.modal-input-label {
+  font-weight: 500;
+  font-size: 1.25em;
+  padding: 0 2px;
+  color: var(--darkgrey);
+}
+
+.modal-content input {
+  min-width: 500px;
+  padding: 6px 8px;
+  border: 0.75px solid var(--darkgrey);
+  border-radius: 4px;
+}
+
+.buttons {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  bottom: 0;
+  right: 0;
+  width: 230px;
+}
+
+.buttons * {
+  padding: 8px 22px;
+  border: 1px solid var(--darkgrey);
+  border-radius: 4px;
+  font-size: 1.0125em;
+  cursor: pointer;
+}
+
+.buttons *:last-child {
+  background-color: var(--darkblue);
+  color: var(--lightgrey);
 }

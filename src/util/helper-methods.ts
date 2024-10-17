@@ -21,3 +21,17 @@ export function formatTimestamp(timestamp: any) {
 
   return `${month}/${day}/${year}, ${hours}:${minutes}`;
 }
+
+export function timestampToMMDDYYHHMM(timestamp: Timestamp) {
+  const date = new Date(timestamp.seconds * 1000);
+
+  // Helper function to pad single digit numbers with leading zeros
+  const pad = (num: number) => String(num).padStart(2, "0");
+
+  // Format the Date object into MM/DD/YY, HH:MM format
+  const formattedDate = `${pad(date.getMonth() + 1)}/${pad(date.getDate())}/${String(
+    date.getFullYear()
+  ).slice(-2)}, ${pad(date.getHours())}:${pad(date.getMinutes())}`;
+
+  return formattedDate;
+}

@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from "react";
-
 export type Timestamp = { seconds: number; nanoseconds: number };
 
 export interface Card {
@@ -25,7 +23,7 @@ export interface ContextMenu {
   menuHeaderStyle?: string;
   menuHeaderText?: string;
   menuOptions?: MenuOption[];
-  setShowMenu: (prev: boolean) => void;
+  closeMenu: () => void;
 }
 
 export interface Row {
@@ -35,5 +33,4 @@ export interface Row {
   createdAt: any;
   selected: boolean;
   setSelected: any;
-  setShowModal: Dispatch<SetStateAction<boolean>>
 }

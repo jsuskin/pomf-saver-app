@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { GoogleSignInInit } from "./components/GoogleSignInInit";
-import Head from 'next/head'
+import Head from 'next/head';
+import StoreProvider from "./lib/redux/StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <Head>
-        <link rel="preconnect" href="https://pomf2.lain.la/" />
-        <link rel="dns-prefetch" href="https://pomf2.lain.la/" />
+        <link rel='preconnect' href='https://pomf2.lain.la/' />
+        <link rel='dns-prefetch' href='https://pomf2.lain.la/' />
       </Head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        {children}
+        <StoreProvider>{children}</StoreProvider>
         <GoogleSignInInit />
       </body>
     </html>

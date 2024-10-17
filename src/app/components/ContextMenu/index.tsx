@@ -8,14 +8,14 @@ export default function ContextMenu({
   menuHeaderStyle = "",
   menuHeaderText = "",
   menuOptions = [],
-  setShowMenu,
+  closeMenu,
 }: ContextMenu) {
   const ref = useRef<HTMLUListElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (ref.current && !ref.current.contains(event.target as Node)) {
-        setShowMenu(false); // Close the menu if click is outside
+        closeMenu(); // Close the menu if click is outside
       }
     };
 
