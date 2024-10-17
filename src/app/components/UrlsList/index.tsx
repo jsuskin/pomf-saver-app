@@ -1,20 +1,19 @@
 "use client";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { collection, onSnapshot } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { db } from "../../lib/firebase/firestore";
-import { collection, getDocs } from "firebase/firestore";
-import styles from "./urls.module.css";
-import Row from "./Row";
 import Checkbox from "../Checkbox";
+import Row from "./Row";
+import styles from "./urls.module.css";
 
 const Urls = () => {
   const [urls, setUrls] = useState<any[]>([]);
   const [selectAll, setSelectAll] = useState(false);
 
   useEffect(() => {
-    // Fetch urls collection from Firestore DB
-    (async () => {
-      const querySnapshot = await getDocs(collection(db, "urls"));
-      const urlsList = querySnapshot.docs.map((doc, idx) => ({
+    // Set up Firestore listener for real-time updates
+    const unsubscribe = onSnapshot(collection(db, "urls"), (snapshot) => {
+      const urlsList = snapshot.docs.map((doc) => ({
         id: doc.id,
         ownerDisplayName: doc.data().owner.displayName,
         ownerUid: doc.data().owner.uid,
@@ -24,8 +23,12 @@ const Urls = () => {
       }));
 
       setUrls(urlsList);
-    })();
+    });
+
+    // Cleanup the listener on unmount
+    return () => unsubscribe();
   }, []);
+
 
   useEffect(() => {
     if (selectAll) {

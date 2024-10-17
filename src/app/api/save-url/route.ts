@@ -6,7 +6,14 @@ export async function POST(req: Request) {
   try {
     const { url, uid, displayName } = await req.json();
 
-    const docRef: any = await addDoc({ url, owner: {uid, displayName}, createdAt: new Date() });
+    const docRef: any = await addDoc({
+      url,
+      name: url,
+      owner: { uid, displayName },
+      tags: [],
+      sharedWith: [],
+      createdAt: new Date(),
+    });
 
     return NextResponse.json({ id: docRef.id }, { status: 200 });
   } catch (e) {
