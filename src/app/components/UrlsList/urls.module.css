@@ -22,6 +22,7 @@
 
 .urls-list tbody {
   text-align: center;
+  /* padding: 10px; */
 }
 
 .urls-list tbody tr,
@@ -54,7 +55,7 @@
   min-height: 30px;
 }
 
-.asset-path-container {
+.asset-name-container {
   width: 100%;
 }
 
@@ -65,7 +66,5 @@
 .menu-container {
   width: 200px;
   margin-top: 5px;
-  top: 30px;
-  right: 5px;
   border-radius: 10px;
 }

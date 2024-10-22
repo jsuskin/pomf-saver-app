@@ -9,7 +9,7 @@ import type { ProfileMenu, MenuOption } from "@/util/types";
 const classNames = ["user-profile-menu", "user-profile-menu-header"];
 const [containerStyle, menuHeaderStyle] = classNames.map((className) => styles[className]);
 
-export default function ProfileMenu({ removeCredential, displayName, setShowMenu }: ProfileMenu) {
+export default function ProfileMenu({ removeCredential, displayName, closeMenu }: ProfileMenu) {
   const menuHeaderText = `Hello, ${displayName.split(" ")[0]}!`;
   const menuOptions = [
     ["Settings", () => {}],
@@ -29,14 +29,12 @@ export default function ProfileMenu({ removeCredential, displayName, setShowMenu
 
     localStorage.removeItem("authToken");
     removeCredential();
-    setShowMenu(false);
+    closeMenu();
 
     console.log("successfully logged out");
   }
 
   return (
-    <ContextMenu
-      {...{ setShowMenu, containerStyle, menuHeaderStyle, menuHeaderText, menuOptions }}
-    />
+    <ContextMenu {...{ containerStyle, menuHeaderStyle, menuHeaderText, menuOptions, closeMenu }} />
   );
 }

@@ -4,13 +4,29 @@
   flex-direction: column;
   background-color: #fffafa;
   z-index: 4;
+  right: 5px;
+  /* visibility: hidden; */
+}
+
+.show {
+  /* visibility: visible; */
+}
+
+.show-menu-above {
+  bottom: 30px;
+}
+
+.show-menu-below {
+  top: 30px;
 }
 
 .context-menu-header {
   align-self: flex-end;
 }
 
-.context-menu, .context-menu li, .context-menu-header {
+.context-menu,
+.context-menu li,
+.context-menu-header {
   padding: 10px;
 }
 
@@ -26,8 +42,17 @@
 
 .menu-option {
   display: flex;
+  align-items: center;
 }
 
 .menu-option-icon {
   padding-right: 10px;
+}
+
+.menu-option-carat-right {
+  padding-left: 22px;
+}
+
+.red * {
+  color: #e10f0f;
 }

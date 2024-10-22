@@ -57,7 +57,9 @@ export default function AuthHandler({ user }: any) {
           {showUserProfileMenu && (
             <ProfileMenu
               displayName={user.displayName}
-              setShowMenu={setShowUserProfileMenu}
+              closeMenu={() => {
+                setShowUserProfileMenu(false);
+              }}
               removeCredential={() => setCredential(null)}
             />
           )}

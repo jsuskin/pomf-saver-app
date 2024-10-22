@@ -1,10 +1,10 @@
 "use client";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { db } from "../../lib/firebase/firestore";
-import Checkbox from "../Checkbox";
-import Row from "./Row";
+import { db } from "../../lib/firebase";
 import styles from "./urls.module.css";
+import THead from "./Table/THead";
+import TBody from "./Table/TBody";
 
 const Urls = () => {
   const [urls, setUrls] = useState<any[]>([]);
@@ -18,6 +18,7 @@ const Urls = () => {
         ownerDisplayName: doc.data().owner.displayName,
         ownerUid: doc.data().owner.uid,
         url: doc.data().url,
+        name: doc.data().name,
         createdAt: doc.data().createdAt,
         selected: false,
       }));
@@ -41,41 +42,12 @@ const Urls = () => {
   return (
     <div className={styles["urls-list-container"]}>
       <table width='100%' className={styles["urls-list"]}>
-        <thead>
-          <tr>
-            <th className={styles["select-all"]}>
-              <Checkbox
-                handleChange={() => {
-                  setSelectAll((prev) => !prev);
-                }}
-                setChecked={() => {}}
-              />
-            </th>
-            <th>Path</th>
-            <th>Date Added</th>
-            <th>Owned By</th>
-            <th className={styles["row-options-header"]}></th>
-          </tr>
-        </thead>
-        <tbody>
-          {urls.map(({ id, url, ownerDisplayName, createdAt, selected }) => {
-            return (
-              <Row
-                key={id}
-                {...{
-                  id,
-                  url,
-                  ownerDisplayName,
-                  selected,
-                  setSelected: () => {
-                    setUrls((urlsList) => urlsList.map((obj) => ({ selected: true, ...obj })));
-                  }
-                }}
-                createdAt={createdAt}
-              />
-            );
-          })}
-        </tbody>
+        <THead
+          toggleSelectAll={() => {
+            setSelectAll((prev) => !prev);
+          }}
+        />
+        <TBody {...{ urls, setUrls }} />
       </table>
     </div>
   );

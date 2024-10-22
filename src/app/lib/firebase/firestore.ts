@@ -1,12 +1,11 @@
-import { getFirestore } from "firebase/firestore";
 import {
-  collection,
   addDoc as addDocToDB,
+  collection,
+  doc,
   getDocs as getDocsFromDB,
+  updateDoc ,
 } from "firebase/firestore";
-import app from ".";
-
-export const db = getFirestore(app);
+import { db } from ".";
 
 export const addDoc = async (obj: { [key: string]: any }) => {
   try {
@@ -27,4 +26,12 @@ export const getDocs = async () => {
   });
 
   return urlsList;
+};
+
+export const updateDocument = async (docId: string, updatedData: { name: string }) => {
+  // Get a reference to the document by its ID
+  const docRef = doc(db, "urls", docId);
+
+  // Update the document with new data
+  await updateDoc(docRef, updatedData);
 };

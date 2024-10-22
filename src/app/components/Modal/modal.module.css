@@ -29,6 +29,7 @@
   top: 25px;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .modal-content {
@@ -49,7 +50,7 @@
   color: var(--darkgrey);
 }
 
-.modal-content input {
+.modal-content input, .modal-content select {
   min-width: 500px;
   padding: 6px 8px;
   border: 0.75px solid var(--darkgrey);
@@ -57,20 +58,36 @@
 }
 
 .buttons {
-  position: absolute;
   display: flex;
-  justify-content: space-between;
-  bottom: 0;
-  right: 0;
-  width: 230px;
+  justify-content: flex-end;
 }
 
 .buttons * {
   padding: 8px 22px;
+  margin: 10px;
   border: 1px solid var(--darkgrey);
   border-radius: 4px;
   font-size: 1.0125em;
   cursor: pointer;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.separator hr {
+  flex-grow: 1;
+  border: none;
+  border-top: 1px solid black;
+  margin: 0 10px;
+}
+
+.separator p {
+  margin: 0;
+  padding: 0 10px;
+  white-space: nowrap;
 }
 
 .buttons *:last-child {

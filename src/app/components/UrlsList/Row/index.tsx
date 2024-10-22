@@ -6,7 +6,15 @@ import { timestampToMMDDYYHHMM } from "@/util/helper-methods";
 import AssetThumbnail from "./AssetThumbnail";
 import MoreOptions from "./MoreOptions";
 
-export default function Row({ id, url, ownerDisplayName, createdAt, selected, setSelected }: Row) {
+export default function Row({
+  id,
+  url,
+  name,
+  ownerDisplayName,
+  createdAt,
+  selected,
+  setSelected,
+}: Row) {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -23,8 +31,8 @@ export default function Row({ id, url, ownerDisplayName, createdAt, selected, se
       </td>
       <td className={styles.asset}>
         <AssetThumbnail url={url} />
-        <div className={styles["asset-path-container"]}>
-          <p className={styles["asset-path"]}>{url}</p>
+        <div className={styles["asset-name-container"]}>
+          <p className={styles["asset-name"]}>{name}</p>
         </div>
       </td>
       <td>{timestampToMMDDYYHHMM(createdAt)}</td>
@@ -33,10 +41,10 @@ export default function Row({ id, url, ownerDisplayName, createdAt, selected, se
         className={styles["more-options"]}
         onClick={(e) => {
           e.stopPropagation();
-          if(!showMenu) setShowMenu(true);
+          if (!showMenu) setShowMenu(true);
         }}
       >
-        <MoreOptions showMenu={showMenu} closeMenu={() => setShowMenu(false)} url={url} />
+        <MoreOptions {...{ id, name, url, showMenu }} closeMenu={() => setShowMenu(false)} />
       </td>
     </tr>
   );

@@ -9,7 +9,7 @@ export interface Card {
 export interface ProfileMenu {
   removeCredential: () => void;
   displayName: string;
-  setShowMenu: (prev: boolean) => void;
+  closeMenu: () => void;
 }
 
 export interface MenuOption {
@@ -29,6 +29,7 @@ export interface ContextMenu {
 export interface Row {
   id: string;
   url: string;
+  name: string;
   ownerDisplayName: string;
   createdAt: any;
   selected: boolean;
