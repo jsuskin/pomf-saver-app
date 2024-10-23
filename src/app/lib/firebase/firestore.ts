@@ -7,9 +7,9 @@ import {
 } from "firebase/firestore";
 import { db } from ".";
 
-export const addDoc = async (obj: { [key: string]: any }) => {
+export const addDoc = async (collectionName: string, obj: { [key: string]: any }) => {
   try {
-    const docRef = await addDocToDB(collection(db, "urls"), obj);
+    const docRef = await addDocToDB(collection(db, collectionName), obj);
     console.log("Document written with ID: ", docRef.id);
     return docRef.id;
   } catch (e) {
@@ -17,20 +17,20 @@ export const addDoc = async (obj: { [key: string]: any }) => {
   }
 };
 
-export const getDocs = async () => {
-  const urlsList: any[] = [];
-  const querySnapshot = await getDocsFromDB(collection(db, "urls"));
+export const getDocs = async (collectionName: string) => {
+  const docs: any[] = [];
+  const querySnapshot = await getDocsFromDB(collection(db, collectionName));
 
   querySnapshot.forEach((doc) => {
-    urlsList.push({ ...doc.data(), post_id: doc.id });
+    docs.push({ ...doc.data(), post_id: doc.id });
   });
 
-  return urlsList;
+  return docs;
 };
 
-export const updateDocument = async (docId: string, updatedData: { name: string }) => {
+export const updateDocument = async (collectionName: string, docId: string, updatedData: { name: string }) => {
   // Get a reference to the document by its ID
-  const docRef = doc(db, "urls", docId);
+  const docRef = doc(db, collectionName, docId);
 
   // Update the document with new data
   await updateDoc(docRef, updatedData);

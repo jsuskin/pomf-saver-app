@@ -6,20 +6,23 @@ import MainContent from "./components/MainContent";
 import Loading from "./components/Loading";
 import { auth } from "./lib/firebase";
 import styles from "./page.module.css";
+import { useAppDispatch } from "./lib/redux/hooks";
+import { setUser } from "./lib/redux/features/user/userSlice";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<User | null>(null);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const unsubscribeFromAuthUpdates = onIdTokenChanged(auth, async (currentUser) => {
-      if (currentUser) {
-        // Get the token and log it
-        const token = await currentUser.getIdToken();
-        console.log("Retrieved token:", token);
-      }
+      dispatch(
+        setUser({
+          uid: currentUser?.uid,
+          displayName: currentUser?.displayName,
+          photoURL: currentUser?.photoURL,
+        })
+      );
 
-      setUser(currentUser);
       setIsLoading(false);
     });
 
@@ -30,7 +33,7 @@ export default function Home() {
 
   return (
     <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}>
-      <main className={styles.main}>{isLoading ? <Loading /> : <MainContent user={user} />}</main>
+      <main className={styles.main}>{isLoading ? <Loading /> : <MainContent />}</main>
     </GoogleOAuthProvider>
   );
 }

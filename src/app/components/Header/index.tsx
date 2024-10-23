@@ -4,7 +4,7 @@ import AuthHandler from "./AuthHandler";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 
-export default function Header({ user }: any) {
+export default function Header() {
   const [searchText, setSearchText] = useState("");
 
   return (
@@ -47,7 +47,7 @@ export default function Header({ user }: any) {
             <></>
           )}
         </div>
-        <AuthHandler user={user} />
+        <AuthHandler />
       </header>
     </header>
   );

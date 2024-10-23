@@ -4,24 +4,20 @@ import { useAppSelector } from "@/app/lib/redux/hooks";
 import styles from "../modal.module.css";
 import { updateDocument } from "@/app/lib/firebase/firestore";
 import { useAppDispatch } from "@/app/lib/redux/hooks";
-import { closeModal as _closeModal } from "@/app/lib/redux/features/modal/modalSlice";
+
 import { setToastText } from "@/app/lib/redux/features/toast/toastSlice";
 
-export default function AssetOptionsModalContent() {
+export default function AssetOptionsModalContent({ closeModal }: any) {
   const [textInputValue, setTextInputValue] = useState("");
   const modalData = useAppSelector(selectModalData);
   const dispatch = useAppDispatch();
-
-  const closeModal = () => {
-    dispatch(_closeModal());
-  };
 
   const handleRenameDoc = async (e: any) => {
     e.preventDefault();
 
     if (modalData) {
       try {
-        await updateDocument(modalData.docId, { name: textInputValue });
+        await updateDocument("urls", modalData.docId, { name: textInputValue });
         closeModal();
         dispatch(setToastText("Asset Renamed Successfully"))
       } catch(error) {
@@ -35,7 +31,7 @@ export default function AssetOptionsModalContent() {
   }, [modalData]);
 
   return (
-    <div className={styles["modal-content"]}>
+    <>
       <label htmlFor='rename' className={styles["modal-input-label"]}>
         Rename Asset
       </label>
@@ -52,6 +48,6 @@ export default function AssetOptionsModalContent() {
         <button onClick={closeModal}>Cancel</button>
         <button onClick={handleRenameDoc}>Rename</button>
       </div>
-    </div>
+    </>
   );
 }

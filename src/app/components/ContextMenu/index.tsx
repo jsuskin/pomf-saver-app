@@ -48,7 +48,10 @@ export default function ContextMenu({
             "color" in menuOption && styles[menuOption.color as string]
           }`}
           key={idx}
-          onClick={handleClick}
+          onClick={() => {
+            handleClick();
+            closeMenu();
+          }}
         >
           {icon && <FontAwesomeIcon className={styles["menu-option-icon"]} icon={icon} />}
           <p>{text}</p>

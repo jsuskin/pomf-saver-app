@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   try {
     const { url, uid, displayName } = await req.json();
 
-    const docRef: any = await addDoc({
+    const docRef: any = await addDoc("urls", {
       url,
       name: url,
       owner: { uid, displayName },

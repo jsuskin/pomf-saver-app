@@ -15,7 +15,7 @@ export interface ProfileMenu {
 export interface MenuOption {
   icon?: any;
   text: string;
-  handleClick: (() => void) | ((a: any) => void);
+  handleClick: (a?: any) => void;
 }
 
 export interface ContextMenu {

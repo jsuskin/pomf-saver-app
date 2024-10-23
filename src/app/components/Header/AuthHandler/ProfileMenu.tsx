@@ -5,11 +5,15 @@ import styles from "../header.module.css";
 import ContextMenu from "../../ContextMenu";
 import React from "react";
 import type { ProfileMenu, MenuOption } from "@/util/types";
+import { useAppDispatch } from "@/app/lib/redux/hooks";
+import { unsetUser } from "@/app/lib/redux/features/user/userSlice";
 
 const classNames = ["user-profile-menu", "user-profile-menu-header"];
 const [containerStyle, menuHeaderStyle] = classNames.map((className) => styles[className]);
 
 export default function ProfileMenu({ removeCredential, displayName, closeMenu }: ProfileMenu) {
+  const dispatch = useAppDispatch();
+  
   const menuHeaderText = `Hello, ${displayName.split(" ")[0]}!`;
   const menuOptions = [
     ["Settings", () => {}],
@@ -27,8 +31,10 @@ export default function ProfileMenu({ removeCredential, displayName, closeMenu }
         console.error("Error signing out from Firebase: ", error);
       });
 
+    
     localStorage.removeItem("authToken");
     removeCredential();
+    dispatch(unsetUser());
     closeMenu();
 
     console.log("successfully logged out");

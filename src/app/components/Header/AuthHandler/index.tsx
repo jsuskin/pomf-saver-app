@@ -11,10 +11,15 @@ import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { auth } from "@/app/lib/firebase";
 import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 
+// REDUX
+import { useAppSelector } from "@/app/lib/redux/hooks";
+import { selectUser } from "@/app/lib/redux/features/user/userSlice";
+
 /*** EXPORT ***/
-export default function AuthHandler({ user }: any) {
+export default function AuthHandler() {
   const [credential, setCredential] = useState<string | null>(null);
   const [showUserProfileMenu, setShowUserProfileMenu] = useState(false);
+  const user = useAppSelector(selectUser);
 
   useEffect(() => {
     if (credential) {
@@ -46,17 +51,17 @@ export default function AuthHandler({ user }: any) {
 
   return (
     <div className={styles["auth-handler-container"]}>
-      {user ? (
+      {user.isLoggedIn ? (
         <>
           <Avatar
-            avatarUrl={user.photoURL}
+            avatarUrl={user.photoURL!}
             toggleProfileMenu={() => {
               setShowUserProfileMenu((prev) => !prev);
             }}
           />
           {showUserProfileMenu && (
             <ProfileMenu
-              displayName={user.displayName}
+              displayName={user.displayName!}
               closeMenu={() => {
                 setShowUserProfileMenu(false);
               }}

@@ -4,26 +4,28 @@ import { useAppSelector } from "@/app/lib/redux/hooks";
 import styles from "../modal.module.css";
 import { updateDocument } from "@/app/lib/firebase/firestore";
 import { useAppDispatch } from "@/app/lib/redux/hooks";
-import { closeModal as _closeModal } from "@/app/lib/redux/features/modal/modalSlice";
 import { setToastText } from "@/app/lib/redux/features/toast/toastSlice";
+import { addDoc } from "@/app/lib/firebase/firestore";
 
-export default function AssetOptionsModalContent() {
+export default function AssetOptionsModalContent({ closeModal }: any) {
   const [textInputValue, setTextInputValue] = useState("");
+  const [selectValue, setSelectValue] = useState("")
   const modalData = useAppSelector(selectModalData);
-  const dispatch = useAppDispatch();
 
-  const closeModal = () => {
-    dispatch(_closeModal());
+  const handleAddAssetToGroup = async (e: any) => {
+    e.preventDefault();
+
+    await addDoc("groups", {
+      name: textInputValue
+    })
   };
-
-  const handleAddAssetToGroup = () => {};
 
   useEffect(() => {
     if (modalData) setTextInputValue(modalData.name);
   }, [modalData]);
 
   return (
-    <div className={styles["modal-content"]}>
+    <>
       <label htmlFor='addToNewGroup' className={styles["modal-input-label"]}>
         Create New Group
       </label>
@@ -56,6 +58,6 @@ export default function AssetOptionsModalContent() {
         <button onClick={closeModal}>Cancel</button>
         <button onClick={handleAddAssetToGroup}>Add</button>
       </div>
-    </div>
+    </>
   );
 }
