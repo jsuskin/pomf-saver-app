@@ -1,20 +1,13 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faCopy, faPencil, faCloudArrowDown, faPlus, faVault, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
-import ContextMenu from "../../ContextMenu";
+import ContextMenu from "../../../ContextMenu";
 import { initAddAssetToGroupModal, openModal } from "@/app/lib/redux/features/modal/modalSlice";
-import styles from "../urls.module.css";
+import styles from "../../urls.module.css";
 import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { initRenameAssetModal } from "@/app/lib/redux/features/modal/modalSlice";
 import { setToastText } from "@/app/lib/redux/features/toast/toastSlice";
-
-interface MoreOptions {
-  showMenu: boolean;
-  closeMenu: () => void;
-  name: string;
-  url: string;
-  id: string;
-}
+import type { MoreOptions } from "@/util/types";
 
 export default function MoreOptions({ showMenu, closeMenu, name, url, id }: MoreOptions) {
   const dispatch = useAppDispatch();

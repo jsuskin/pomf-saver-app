@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from "react";
-import Row from "../Row";
+import Row from "./Row";
 
 type UrlDoc = {
   id: string;

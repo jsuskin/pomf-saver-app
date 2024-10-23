@@ -4,13 +4,10 @@ import styles from "../urls.module.css";
 
 export default function THead({ toggleSelectAll }: any) {
   return (
-    <thead>
+    <thead style={{ textAlign: "left" }}>
       <tr>
         <th className={styles["select-all"]}>
-          <Checkbox
-            handleChange={toggleSelectAll}
-            setChecked={() => {}}
-          />
+          <Checkbox handleChange={toggleSelectAll} setChecked={() => {}} />
         </th>
         <th>Name</th>
         <th>Date Added</th>

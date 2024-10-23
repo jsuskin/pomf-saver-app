@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import Image from "next/image";
-import VideoPlayer from "../../VideoPlayer";
-import styles from "../urls.module.css";
+import VideoPlayer from "../../../VideoPlayer";
+import styles from "../../urls.module.css";
 
 export default function AssetThumbnail({ url }: { url: string }) {
   return (
@@ -14,9 +14,9 @@ export default function AssetThumbnail({ url }: { url: string }) {
         <Image
           src={url}
           alt={url}
-          fill
+          width={25}
+          height={25}
           style={{ objectFit: "cover" }}
-          sizes='(max-width: 100px) 100vw'
           priority
         />
       )}

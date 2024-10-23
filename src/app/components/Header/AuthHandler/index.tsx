@@ -1,5 +1,5 @@
 /*** IMPORTS ***/
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../header.module.css";
 import Avatar from "./Avatar";
 import ProfileMenu from "./ProfileMenu";
@@ -12,14 +12,14 @@ import { auth } from "@/app/lib/firebase";
 import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
 
 // REDUX
-import { useAppSelector } from "@/app/lib/redux/hooks";
 import { selectUser } from "@/app/lib/redux/features/user/userSlice";
+import { useAppSelector } from "@/app/lib/redux/hooks";
 
 /*** EXPORT ***/
 export default function AuthHandler() {
   const [credential, setCredential] = useState<string | null>(null);
   const [showUserProfileMenu, setShowUserProfileMenu] = useState(false);
-  const user = useAppSelector(selectUser);
+  const { isLoggedIn } = useAppSelector(selectUser);
 
   useEffect(() => {
     if (credential) {
@@ -51,17 +51,15 @@ export default function AuthHandler() {
 
   return (
     <div className={styles["auth-handler-container"]}>
-      {user.isLoggedIn ? (
+      {isLoggedIn ? (
         <>
           <Avatar
-            avatarUrl={user.photoURL!}
             toggleProfileMenu={() => {
               setShowUserProfileMenu((prev) => !prev);
             }}
           />
           {showUserProfileMenu && (
             <ProfileMenu
-              displayName={user.displayName!}
               closeMenu={() => {
                 setShowUserProfileMenu(false);
               }}

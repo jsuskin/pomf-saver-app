@@ -6,10 +6,21 @@ export interface Card {
   createdAt: string;
 }
 
+export interface UserAvatar {
+  toggleProfileMenu: () => void;
+}
+
 export interface ProfileMenu {
   removeCredential: () => void;
-  displayName: string;
   closeMenu: () => void;
+}
+
+export interface MoreOptions {
+  showMenu: boolean;
+  closeMenu: () => void;
+  name: string;
+  url: string;
+  id: string;
 }
 
 export interface MenuOption {

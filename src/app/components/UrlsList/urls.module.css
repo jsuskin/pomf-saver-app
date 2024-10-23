@@ -1,6 +1,7 @@
 .urls-list-container {
   width: 100%;
   padding: 10px 20px;
+  font-size: 0.8rem;
 }
 
 .urls-list {
@@ -21,8 +22,7 @@
 }
 
 .urls-list tbody {
-  text-align: center;
-  /* padding: 10px; */
+  /* text-align: center; */
 }
 
 .urls-list tbody tr,
@@ -34,9 +34,17 @@
   cursor: pointer;
 }
 
+.asset-name-container {
+  margin: 0 10px;
+}
+
 .row:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* .row:hover .more-options {
+  visibility: visible;
+} */
 
 .row td,
 .urls-list thead tr th {
@@ -51,8 +59,9 @@
 
 .asset-thumbnail {
   position: relative;
-  width: 30px;
-  min-height: 30px;
+  display: flex;
+  width: 25px;
+  min-height: 25px;
 }
 
 .asset-name-container {
@@ -61,6 +70,7 @@
 
 .more-options {
   position: relative;
+  /* visibility: hidden; */
 }
 
 .menu-container {

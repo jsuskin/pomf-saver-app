@@ -1,6 +1,6 @@
 import React, { Suspense, useState } from "react";
-import styles from "../urls.module.css";
-import Checkbox from "../../Checkbox";
+import styles from "../../urls.module.css";
+import Checkbox from "../../../Checkbox";
 import type { Row } from "@/util/types";
 import { timestampToMMDDYYHHMM } from "@/util/helper-methods";
 import AssetThumbnail from "./AssetThumbnail";
