@@ -46,3 +46,10 @@ export interface Row {
   selected: boolean;
   setSelected: any;
 }
+
+export type Group = { id: string; name: string; members: string[]; owner: string };
+
+export interface GroupListItem {
+  name: string;
+  size: number;
+}

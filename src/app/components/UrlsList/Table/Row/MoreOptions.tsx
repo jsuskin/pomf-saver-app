@@ -1,6 +1,14 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis, faCopy, faPencil, faCloudArrowDown, faPlus, faVault, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import {
+  faEllipsis,
+  faCopy,
+  faPencil,
+  faCloudArrowDown,
+  faPlus,
+  faVault,
+  faCircleInfo,
+} from "@fortawesome/free-solid-svg-icons";
 import ContextMenu from "../../../ContextMenu";
 import { initAddAssetToGroupModal, openModal } from "@/app/lib/redux/features/modal/modalSlice";
 import styles from "../../urls.module.css";
@@ -53,18 +61,18 @@ export default function MoreOptions({ showMenu, closeMenu, name, url, id }: More
       icon: faCircleInfo,
       text: "Info",
       handleClick: () => {
-        console.log("asset info")
-      }
+        console.log("asset info");
+      },
     },
     {
       icon: faPlus,
       text: "Add to Group",
       handleClick: () => {
-        console.log("add to group")
+        console.log("add to group");
         /* !!TEMP!! */
-        dispatch(initAddAssetToGroupModal());
+        dispatch(initAddAssetToGroupModal({ id }));
       },
-      extendable: true
+      extendable: true,
     },
     {
       icon: faVault,
@@ -73,8 +81,8 @@ export default function MoreOptions({ showMenu, closeMenu, name, url, id }: More
       handleClick: () => {
         console.log("move to vault");
       },
-      color: 'red'
-    }
+      color: "red",
+    },
   ];
 
   return (

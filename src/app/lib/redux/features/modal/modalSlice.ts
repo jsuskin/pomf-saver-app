@@ -30,9 +30,10 @@ const modalSlice = createSlice({
       state.for = "ASSET_OPTIONS";
       state.data = { name: action.payload.name, docId: action.payload.id };
     },
-    initAddAssetToGroupModal(state) {
+    initAddAssetToGroupModal(state, action) {
       state.show = true;
       state.for = "ADD_TO_GROUP";
+      state.data = { docId:action.payload.id}
     }
   },
 });

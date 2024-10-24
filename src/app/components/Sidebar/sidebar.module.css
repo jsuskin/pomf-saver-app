@@ -8,9 +8,8 @@
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
   z-index: 1;
-  /* border-right: 1px solid black; */
   box-shadow: 2px 4px 6px rgb(199, 199, 199);
-  transition: left 1s ease;
+  transition: left 500ms ease;
 }
 
 .hide {
@@ -23,12 +22,27 @@
   padding: 105px 0 0 20px;
 }
 
+.sidebar-list li {
+  padding-top: 10px;
+}
+
+.sidebar-list li * {
+  padding: 2px;
+}
+
+.sidebar-list li p {
+  font-size: 0.7em;
+  font-style: italic;
+  color: var(--darkgrey);
+}
+
 .handle-base {
   background-color: #32328E;
   z-index: -1;
 }
 
-.handle-base, .handle {
+.handle-base,
+.handle {
   position: absolute;
   width: 30px;
   height: 30px;
@@ -42,9 +56,24 @@
   background-color: #F2F4F4;
   cursor: pointer;
   transform: rotateY(180deg);
-  transition: all 1s ease;
+  transition: all 500ms ease;
 }
 
-.hide > .handle {
+.hide>.handle {
   transform: rotateY(0deg);
+}
+
+.group {
+  padding: 0 0 10px 10px;
+  margin: 0 20px 0 -5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.group:hover {
+  background-color: var(--darkgrey-lowalpha);
+}
+
+.groups-list-container {
+  margin-top: 10px;
 }

@@ -2,26 +2,40 @@ import React, { useState, useEffect } from "react";
 import { selectModalData } from "@/app/lib/redux/features/modal/modalSlice";
 import { useAppSelector } from "@/app/lib/redux/hooks";
 import styles from "../modal.module.css";
-import { updateDocument } from "@/app/lib/firebase/firestore";
 import { useAppDispatch } from "@/app/lib/redux/hooks";
 import { setToastText } from "@/app/lib/redux/features/toast/toastSlice";
-import { addDoc } from "@/app/lib/firebase/firestore";
+import { selectUser } from "@/app/lib/redux/features/user/userSlice";
+import axios from "axios";
 
 export default function AssetOptionsModalContent({ closeModal }: any) {
   const [textInputValue, setTextInputValue] = useState("");
   const [selectValue, setSelectValue] = useState("")
   const modalData = useAppSelector(selectModalData);
+  const user = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
 
   const handleAddAssetToGroup = async (e: any) => {
     e.preventDefault();
 
-    await addDoc("groups", {
-      name: textInputValue
-    })
+    axios
+      .post("/api/groups", {
+        name: textInputValue,
+        owner: user.uid,
+        members: [modalData!.docId],
+      })
+      .then((res) => {
+        console.log("Successfully added to group: ", res);
+        closeModal();
+        dispatch(setToastText("Successfully added to group"));
+      })
+      .catch((e) => {
+        console.error("Unable to add to group: ", e);
+      });
   };
 
   useEffect(() => {
-    if (modalData) setTextInputValue(modalData.name);
+    // if (modalData) setTextInputValue(modalData.name);
+    console.log({modalData})
   }, [modalData]);
 
   return (
